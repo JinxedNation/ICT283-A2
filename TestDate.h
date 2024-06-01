@@ -24,8 +24,5 @@ public:
     void testSetMonth();
     void testSetYear();
     void testCalculateLeapYear();
-    void testValidateDay();
-    void testValidateMonth();
-    void testValidateYear();
     void runAllDateTests();
 };

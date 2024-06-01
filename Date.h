@@ -184,6 +184,17 @@ class Date
         bool validateYear(int checkYear) const;
 
 
+            /**
+             * @brief calculateLeapYear()
+             * Used to calculate if the year is a leap year
+             *
+             *
+             * @param  newYear the year to check
+             * @return True if the eyar is a leap year.
+             */
+        bool calculateLeapYear(int newYear) const;
+
+
     private:
 
             /**
@@ -195,17 +206,6 @@ class Date
              * @return True if the eyar is a leap year.
              */
         bool validateDay(int dayRead) const;
-
-
-            /**
-             * @brief calculateLeapYear()
-             * Used to calculate if the year is a leap year
-             *
-             *
-             * @param  newYear the year to check
-             * @return True if the eyar is a leap year.
-             */
-        bool calculateLeapYear(int newYear) const;
 
 
         int m_Day;   /// The day for the date a value between 1 & 31 depending on the month

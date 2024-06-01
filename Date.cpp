@@ -88,7 +88,7 @@ void Date::setDay(int newDay)
 
 void Date::setMonth(int newMonth)
 {
-    if(newMonth >= 1 && newMonth <= 12)
+    if(validateMonth(newMonth))
     {
         m_Month = newMonth;
     }
@@ -97,7 +97,10 @@ void Date::setMonth(int newMonth)
 
 void Date::setYear(int tempYear)
 {
-    m_Year = tempYear;
+    if(validateYear(tempYear))
+    {
+        m_Year = tempYear;
+    }
 }
 
 

@@ -101,3 +101,78 @@ void TestDate::testLessThanOperator()
 }
 
 
+void TestDate::testSetDay() 
+{
+    std::cout << "Testing Date setDay\n\n";
+
+    Date date(1, 1, 2023);
+    date.setDay(15);
+    assert(date.getDay() == 15);
+
+    date.setDay(32);
+    assert(date.getDay() == 15);
+
+    std::cout << "Date setDay function Test Passed\n\n";
+}
+
+
+void TestDate::testSetMonth() 
+{
+    std::cout << "Testing Date setMonth\n\n";
+
+    Date date(1, 1, 2023);
+    date.setMonth(11);
+    assert(date.getMonth() == 11);
+
+    date.setMonth(13);
+    assert(date.getMonth() == 11);
+
+    std::cout << "Date setMonth function Test Passed\n\n";
+}
+
+
+void TestDate::testSetYear() 
+{
+    std::cout << "Testing Date setYear\n\n";
+
+    Date date(1, 1, 1990);
+    date.setYear(1970);
+    assert(date.getYear() == 1970);
+
+    date.setYear(-1);
+    assert(date.getYear() == 1970);
+
+    std::cout << "Date setYear function Test Passed\n\n";
+}
+
+
+void TestDate::testCalculateLeapYear()
+{
+    std::cout << "Testing Date calculateLeapYear\n\n";
+
+    Date thisDate;
+    assert(thisDate.calculateLeapYear(2000));
+    assert(!thisDate.calculateLeapYear(2001));
+    assert(thisDate.calculateLeapYear(2020));
+    assert(!thisDate.calculateLeapYear(1900));
+
+    std::cout << "Date calculateLeapYear function Test Passed\n\n";
+}
+
+
+
+void TestDate::runAllDateTests()
+{
+    testConstructor();
+    testPresetConstructor();
+    testCopyConstructor();
+    testAssignmentOperator();
+    testEqualityOperator();
+    testInequalityOperator();
+    testLessThanOperator();
+    testSetDay();
+    testSetMonth();
+    testSetYear();
+    testCalculateLeapYear();
+}
+

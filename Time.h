@@ -1,105 +1,190 @@
-#ifndef TEXTFILE_H
-#define TEXTFILE_H
-
-#include "Vector.h"
+#ifndef TIME_H
+#define TIME_H
 #include <iostream>
+#include <sstream>
 #include <fstream>
-#include <string>
+
 
     /**
-     * @class   : TextFile
-     * @brief   : Used to read data from a text file.
+     * @class Time
+     * @brief This class is utilized to store and contain Time information such as hour, minute, second.
      *
-     * @author  : William Halling 32233703
-     * @date    : April 2024
-     * @version : 0.2
+     *
+     * @author  William Halling
+     * @version 0.2
+     * @date    April 2024
      */
-class TextFile
+class Time
 {
     public:
 
             /**
-             * @brief Default Constructor
-             * Used to create a TextFile object
+             * @brief Time Default constructor.
+             * Used to create a time object
              */
-        TextFile();
+        Time();
 
 
             /**
-             * @brief Parameterized Constructor
-             * Used to create a TextFile object with a list of files
+             * @brief Time Parameterized constructor.
              *
              *
-             * @param newFiles - a vector of file names to initialize the TextFile Object with
+             * @param newHour   int value to set the hour
+             * @param newMinute int value to set the minute
+             * @param newSecond int value to set the second
              */
-        TextFile(Vector<std::string> newFiles);
+        Time(int newHour, int newMinute, int newSecond);
 
 
             /**
-             * @brief Copoy constructor
-             * Used to create a copy of the TextFile object
+             * @brief Time Copy Constructor
              *
              *
-             * @param other textFile object to copy from
+             * @param newTime The time object to copy data from
+             * @return a copy of a time object
              */
-        TextFile(const TextFile& otherFile);
+        Time(const Time& newTime);
 
 
             /**
-             * @brief Destructor for TextFile object
-             * Used to destroy a TextFile object and release resources.
+             * @brief Time Destructor
+             * Used to destroy a time object and release resources.
              *
              *
-             * @return destroyed TextFile object / NA
+             * @return destroyed time object / NA
              */
-       ~TextFile();
+        ~Time();
 
 
             /**
-             * @brief getDataFiles()
-             * Used to get all of the .csv files stored within data_source.txt
+             * @brief Asignment operator.
+             * Used to assign the values of a Time object into another Time object, allows for deep copying of data
              *
              *
-             * @return the list of files as a Vector<std::string>
+             * @return copy of Date
              */
-        Vector<std::string> getDataFiles() const;
+        const Time& operator=(const Time& otherTime);
 
 
             /**
-             * @brief setFiles()
-             * Used to set the list of file names
+             * @brief  comparison operator.
+             * Used to compare one Time object against another Time object
              *
              *
-             * @param Vector<std::string> fileName
+             * @param  otherTime - Time object to compare against
+             * @return bool true if one Time object equals another Time object
              */
-        void setFiles(Vector<std::string> fileName);
+        bool operator==(const Time& otherTime) const;
+
 
 
             /**
-             * @brief readFile()
-             * Reads the file names from our data_source.txt and stores them ion and object
+             * @brief  Not Equals operator
+             * Used to check that one time object doesnt equal another time object
              *
              *
-             * @param  : fileName the name of the file that is to be read.
-             * @return : the content of the file.
+             * @param  otherTime - Time object to compare against
+             * @return bool true if Time are not equal else false
              */
-        void readFiles(const std::string& fileName);
+        bool operator!=(const Time& otherTime) const;
+
+
+        bool operator>(const Time& otherTime) const;
+
+
+
+        bool operator<(const Time& otherTime) const;
+
+
+            /**
+             * @brief getHour
+             * Used to get the hour of a time object
+             *
+             *
+             * @return const int m_Hour
+             */
+        int getHour() const;
+
+
+            /**
+             * @brief getMinute
+             * Used to get the Minute of a time object
+             *
+             *
+             * @return const int m_Minute
+             */
+        int getMinute() const;
+
+
+            /**
+             * @brief getSecond
+             * Used to get the Second of a time object
+             *
+             *
+             * @return const int m_Second
+             */
+        int getSecond() const;
+
+
+            /**
+             * @brief setHour
+             * Used to set the Hour of a time object
+             *
+             *
+             * @param int newHour
+             */
+        void setHour(int newHour);
+
+
+            /**
+             * @brief setMinute
+             * Used to set the Minute of a time object
+             *
+             *
+             * @param int newMinute
+             */
+        void setMinute(int newMinute);
+
+
+            /**
+             * @brief setSecond
+             * @brief Used to set the Second of a time object
+             *
+             *
+             * @param int newSecond
+             */
+        void setSecond(int newSecond);
 
 
     private:
 
-        Vector<std::string> m_Files; /// The name of the file
+            /**
+             * @brief setSecond
+             * Used to set the Second of a time object
+             *
+             *
+             * @param int newSecond
+             * @return true if the time is between 0 and 59 false otherwise
+             */
+        bool isValidTime(int newTime) const;
 
 
             /**
-             * @brief isValidFile()
-             * Used to validate if a file has .csv for the file extension and checks if a file ends with .csv
+             * @brief isValidHour()
+             * Used to check if the hour is between 0 - 23
              *
              *
-             * @param fileName the name of the file to check
-             * @return True if filename is valid, flase otherwise
+             * @param checkHour - the hour to check
+             * @return true if the hour is between 0 and 23 false otherwise
              */
-        bool isValidFile(const std::string& fileName) const;
+        bool isValidHour(int checkHour) const;
+
+
+        int m_Hour;   /// int value for the hour as a value between 1 and 23
+        int m_Minute; /// int value for the hour as a value between 0 and 60
+        int m_Second; /// int value for the hour as a value between 0 and 60
 };
 
-#endif // TEXTFILE_H
+std::istream & operator >>(std::istream& inputs, Time& t);
+
+#endif // TIME_H
